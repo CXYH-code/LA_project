@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{% block title %}{% endblock %}</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="{{ url_for("static", filename="css/style.css") }}">
+<link rel="stylesheet" href="{{ url_for("static", filename="css/zerogrid.css") }}" type="text/css" media="all">
+
+{% block js %}
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+</head>
+<body class="page1" id="top">
+<!--==============================
+              header
+=================================-->
+<div class="main">
+<header style="border-bottom: 1px solid #989797;">
+  <div class="zerogrid">
+    <div class="col-full"><div class="wrap-col">
+      <h1 class="logo">
+        <a href="{{ url_for('index') }}">Duck<span>Your personal school</span>
+        </a>
+      </h1>
+    </div></div>
+  </div>
+  <section id="stuck_container">
+  <!--==============================
+              Stuck menu
+  =================================-->
+    <div class="zerogrid">
+        <div class="col-full"><div class="wrap-col">
+          <div class="row navigation">
+            <nav>
+              <ul class="sf-menu">
+               <li><a href="{{ url_for('index') }}">Home</a></li>
+               <li><a href="{{ url_for('about') }}">About</a></li>
+               <li><a href="#">Classes</a></li>
+               <li><a href="#">Staff</a></li>
+               <li><a href="{{ url_for('contact') }}">Contacts</a></li>
+             </ul>
+            </nav>
+          </div>
+     </div></div>
+    </div>
+  </section>
+</header>
+<!--=====================
+          Content
+======================-->
+<section id="content">
+  {% block content %}{% endblock %}
+</section>
+
+<!--===============================
+              footer
+=================================-->
+<div class="footer-top">
+  <div class="zerogrid">
+    <div class="col-full">
+      <div class="sep-1"></div>
+    </div>
+    <div class="row">
+	    <div class="col-1-3"><div class="wrap-col">
+	      <address class="address-1"> <div class="fa fa-home"></div>Lotharstraße 65, 47057 Duisburg</address>
+	    </div></div>
+	    <div class="col-1-3"><div class="wrap-col">
+	      <a href="#" class="mail-1"><span class="fa fa-envelope"></span>rubberducks@gmail.com</a>
+	    </div></div>
+	    <div class="col-1-3"><div class="wrap-col">
+	      <div class="socials">
+	        <a href="#">facebook</a>
+	        <a href="#">twitter</a>
+	        <a href="#">google+</a>
+	      </div>
+	    </div></div>
+    </div>
+  </div>
+</div>
+</div>
+<footer id="footer">
+  <div class="zerogrid">
+    <div class="col-full"><div class="wrap-col">
+      <div class="sub-copy" style="text-align: center">Copyright &copy; 2023 Rubber Ducks</div>
+    </div></div>
+  </div>
+</footer>
+<a href="#" id="toTop" class="fa fa-angle-up"></a>
+</body>
+</html>

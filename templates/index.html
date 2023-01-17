@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}
+index
+{% endblock %}
+
+{% block js %}
+    <script>
+	    function l_mouseOver(){
+            element = document.getElementById("left_button")
+            element.style.fill="black"
+	    }
+        function l_mouseOut(){
+            element = document.getElementById("left_button")
+            element.style.fill="white"
+	    }
+        function r_mouseOver(){
+            element = document.getElementById("right_button")
+            element.style.fill="black"
+	    }
+        function r_mouseOut(){
+            element = document.getElementById("right_button")
+            element.style.fill="white"
+	    }
+    </script>
+{% endblock %}
+
+{% block content %}
+  <div class="zerogrid">
+  	<div class="row">
+  		<div class="col-1-3"><div class="wrap-col">
+  			<img src="../static/images/page1_img1.jpg" alt="" class="fleft">
+  		</div></div>
+	     <div class="col-2-3"><div class="wrap-col">
+	     	<h2>About us </h2>
+		      <p>write something</p>
+		      <p>write something </p>
+		      <br>
+		      <a href="#" class="link-1">more</a>
+	     </div></div>
+    </div>
+    <div class="row">
+	    <div class="col-1-4" style="width: 61.8%;"><div class="wrap-col">
+	      <div class="banner" style="background-color: #DCA3C2; border-radius: 30px ">
+	        <div class="maxheight">
+	          <h4 >
+                  Duck's school <br> semester 2023
+              </h4>
+	        </div>
+	      </div>
+	    </div></div>
+	    <div class="col-1-4" style="width: 38.2%"><div class="wrap-col">
+	      <div class="banner" style="background-color: #C7CEF4; border-radius: 30px ">
+	        <div class="maxheight" >
+	          <h4 >
+                  Master <br> Classes
+              </h4>
+	        </div>
+	      </div>
+	    </div></div>
+        <div class="col-1-4" style="width: 38.2%"><div class="wrap-col">
+	      <div class="banner" style="margin-top: 0;background-color: #D1A69B; border-radius: 30px ">
+	        <div class="maxheight">
+	          <h4>
+                  Find out the best course!
+              </h4>
+	          <a href="{{ url_for("main_real") }}" onmouseover="l_mouseOver()" onmouseout="l_mouseOut()">
+                   <svg  id="left_button" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="white" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"></path>
+                  </svg>
+              </a>
+	        </div>
+	      </div>
+	    </div></div>
+        <div class="col-1-4" style="width: 61.8%"><div class="wrap-col">
+	      <div class="banner" style="margin-top: 0;background-color: #7894CF; border-radius: 30px">
+	        <div class="maxheight">
+	          <h4 >
+                  You are a silly swan and want to hide yourself?
+              </h4>
+
+              <a href="{{ url_for("about") }}" onmouseover="r_mouseOver()" onmouseout="r_mouseOut()">
+                  <svg id = "right_button" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="white" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"></path>
+                  </svg>
+              </a>
+
+              </div>
+	        </div>
+	      </div>
+	    </div></div>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact
+{% endblock %}
+{% block js %}
+<link rel="stylesheet" href="../static/css/contactform.css">
+{% endblock %}
+
+{% block content %}
+ <div class="zerogrid">
+    <div class="col-full">
+      <h2 class="inset__1">Find Us</h2>
+      <div class="map">
+        <figure class="">
+          <iframe src="https://maps.google.com/maps?q=Lotharstra%C3%9Fe%2065,%2047057%20Duisburg&t=&z=9&ie=UTF8&iwloc=&output=embed" style="border:0"></iframe>
+        </figure>
+      </div>
+    </div>
+    <div class="row">
+	    <div class="col-2-5"><div class="wrap-col">
+	      <h4 class="color1 inset__1">Contact Info</h4>
+	      <p>write something </p>
+	      <p>write something</p>
+	      Rubber Duck <br>
+	      Lotharstraße 65, 47057 Duisburg <br>
+	      Telephone: +49 000 000 0000 <br>
+	      E-mail: <a href="#">rubberducks@gmail.com</a>
+	    </div></div>
+	    <div class="col-3-5"><div class="wrap-col">
+	      <h4 class="color1 inset__1">Contact Form</h4>
+	        <div id="contact_form">
+				<strong>Hello !! You can send message to us.</strong>
+				<form name="form1" id="ff" method="post" action="contacts.php">
+					 <label>
+					 Name*:
+					 <input type="text" placeholder="Please enter your name" name="name" id="name" required>
+					 </label>
+
+					 <label>
+					 Email*:
+					 <input type="email" placeholder="youremail@gmail.com" name="email" id="email" required>
+					 </label>
+
+					 <label>
+					 Message*:
+					 <textarea name="message" id="message">Please enter your message</textarea>
+					 </label>
+
+					 <input class="sendButton" type="submit" name="Submit" value="Send">
+
+				</form>
+			</div>
+	    </div></div>
+    </div>
+  </div>
+{% endblock %}
