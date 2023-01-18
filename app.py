@@ -9,9 +9,12 @@ app = Flask(__name__)
 # Binding config files
 app.config.from_object(config)
 
+# connect to mongodb
 client = MongoClient('localhost', 27017)
 
+# create database "flask.db", just for testing
 db = client.flask_db
+# create a collection "todos", just for testing
 todos = db.todos
 
 
@@ -45,6 +48,17 @@ def result_real():
     return render_template("result_real.html")
 
 
+@app.route('/vis_real')
+def vis_real():
+    return render_template("vis_real.html")
+
+
+@app.route('/input_popup')
+def input_popup():
+    return render_template("input_popup.html")
+
+
+# just for test how to combine flask and mongodb
 @app.route('/test', methods=('GET', 'POST'))
 def test():
     if request.method == 'POST':
