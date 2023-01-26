@@ -40,6 +40,10 @@ def contact():
 
 @app.route('/main_real')
 def main_real():
+    courses = request.args.getlist('courses')
+    print(type(courses))
+    for i in courses:
+        print(i)
     return render_template("main_real.html")
 
 
@@ -53,9 +57,32 @@ def vis_real():
     return render_template("vis_real.html")
 
 
-@app.route('/input_popup')
+@app.route('/input_popup', methods=('GET', 'POST'))
 def input_popup():
-    return render_template("input_popup.html")
+    if request.method == 'POST':
+        courses = []
+        student_id = request.form['student_id']
+        for i in range(1, 8):
+            course = {}
+
+            num_code_module = "code_module_" + str(i)
+            num_assessment_type = "assessment_type_" + str(i)
+            num_score = "score_" + str(i)
+
+            assessment_type = request.form[num_assessment_type]
+            code_module = request.form[num_code_module]
+            score = request.form[num_score]
+
+            course['code_module'] = code_module
+            course['assessment_type'] = assessment_type
+            course['score'] = score
+
+            courses.append(course)
+        print(student_id)
+        for item in courses:
+            print(item)
+        return redirect(url_for('main_real', courses=courses))
+    return render_template('input_popup.html')
 
 
 # just for test how to combine flask and mongodb
@@ -80,6 +107,11 @@ def delete(id):
         print(data)
     todos.delete_one({"_id": ObjectId(id)})
     return redirect(url_for('test'))
+
+
+@app.route('/test1')
+def test1():
+    return render_template('test1.html')
 
 
 if __name__ == '__main__':
