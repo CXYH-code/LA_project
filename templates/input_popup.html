@@ -8,15 +8,38 @@
        header
       =================================-->
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-weight: bold; color: #6C5CE7">New information</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-weight: bold; color: #6C5CE7">Previous___course</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <!--==============================
+       body
+      =================================-->
       <div class="modal-body" style="font-weight: bold; font-size: 20px">
         <form id="popup_form" method="post">
             <div class="mb-3" style="width: 50%;margin-left: 20px">
-                 <label for="student_id" class="col-form-label">student_id:</label>
-                 <input class="form-control" id="student_id" name="student_id">
+                 <label for="student_id" class="col-form-label" style="float: left">student_id:</label>
+                 <input class="form-control" id="student_id" name="student_id" value="{{random_id}}" readonly="readonly" placeholder="{{random_id}}" style="width: 50%; margin-left: 150px; border: none ">
             </div>
+            <div class="mb-3" style="width: 45%;margin-left: 20px;float: left">
+                 <label for="age" class="col-form-label" style="float: left">age:</label>
+                 <input class="form-control" id="age" name="age"  style="width: 50%; margin-left: 150px;">
+            </div>
+            <div class="mb-3" style="width: 45%;margin-left: 40px;display: inline-block">
+                 <label for="gender" class="col-form-label" style="float: left">gender:</label>
+                 <select class="form-select" aria-label="Default select example" name="gender" style="width: 50%; margin-left: 150px;">
+                            <option value="M">male<option>
+                            <option value="F">female</option>
+                 </select>
+            </div>
+            <div class="mb-3" style="width: 45%;margin-left: 20px;float: left">
+                 <label for="region" class="col-form-label" style="float: left">region:</label>
+                 <input class="form-control" id="region" name="region" style="width: 50%; margin-left: 150px; ">
+            </div>
+            <div class="mb-3" style="width: 45%;margin-left: 40px;display: inline-block">
+                 <label for="highest_education" class="col-form-label" style="float: left">education:</label>
+                 <input class="form-control" id="highest_education" name="highest_education" style="width: 50%; margin-left: 150px; ">
+            </div>
+
             <div class="accordion accordion-flush" id="accordionFlushExample">
               <!--==============================
                course1
@@ -29,17 +52,41 @@
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                   <div class="accordion-body">
-                    <div class="mb-3" style="width: 30%;float: left;">
+                    <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_1" class="col-form-label">code_module:</label>
-                      <input class="form-control" id="code_module_1" name="code_module_1">
+                      <select class="form-select" aria-label="Default select example" name="code_module_1">
+                            <option selected></option>
+                            <option value="AAA">AAA</option>
+                            <option value="BBB">BBB</option>
+                            <option value="CCC">CCC</option>
+                            <option value="DDD">DDD</option>
+                            <option value="EEE">EEE</option>
+                            <option value="FFF">FFF</option>
+                            <option value="GGG">GGG</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%; display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="assessment_type_1" class="col-form-label">assessment_type:</label>
-                      <input class="form-control" id="assessment_type_1" name="assessment_type_1">
+                      <select class="form-select" aria-label="Default select example" name="assessment_type_1">
+                            <option selected></option>
+                            <option value="TMA">TMA</option>
+                            <option value="CMA">CMA</option>
+                            <option value="EXAM">EXAM</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%;display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
                         <label for="score_1" class="col-form-label">score:</label>
                         <input class="form-control" id="score_1" name="score_1">
+                    </div>
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="semester_1" class="col-form-label">semester:</label>
+                      <select class="form-select" aria-label="Default select example" name="semester_1">
+                            <option selected></option>
+                            <option value="2013J">2013J</option>
+                            <option value="2013B">2013B</option>
+                            <option value="2014J">2014J</option>
+                            <option value="2014B">2014B</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -55,17 +102,41 @@
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                   <div class="accordion-body">
-                    <div class="mb-3" style="width: 30%;float: left;">
+                    <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_2" class="col-form-label">code_module:</label>
-                      <input class="form-control" id="code_module_2" name="code_module_2">
+                      <select class="form-select" aria-label="Default select example" name="code_module_2">
+                            <option selected></option>
+                            <option value="AAA">AAA</option>
+                            <option value="BBB">BBB</option>
+                            <option value="CCC">CCC</option>
+                            <option value="DDD">DDD</option>
+                            <option value="EEE">EEE</option>
+                            <option value="FFF">FFF</option>
+                            <option value="GGG">GGG</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%; display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="assessment_type_2" class="col-form-label">assessment_type:</label>
-                      <input class="form-control" id="assessment_type_2" name="assessment_type_2">
+                      <select class="form-select" aria-label="Default select example" name="assessment_type_2">
+                            <option selected></option>
+                            <option value="TMA">TMA</option>
+                            <option value="CMA">CMA</option>
+                            <option value="EXAM">EXAM</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%;display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
                         <label for="score_2" class="col-form-label">score:</label>
                         <input class="form-control" id="score_2" name="score_2">
+                    </div>
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="semester_2" class="col-form-label">semester:</label>
+                      <select class="form-select" aria-label="Default select example" name="semester_2">
+                            <option selected></option>
+                            <option value="2013J">2013J</option>
+                            <option value="2013B">2013B</option>
+                            <option value="2014J">2014J</option>
+                            <option value="2014B">2014B</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -81,17 +152,40 @@
                 </h2>
                 <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                   <div class="accordion-body">
-                    <div class="mb-3" style="width: 30%;float: left;">
+                    <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_3" class="col-form-label">code_module:</label>
-                      <input class="form-control" id="code_module_3" name="code_module_3">
+                      <select class="form-select" aria-label="Default select example" name="code_module_3">
+                            <option selected></option>
+                            <option value="AAA">AAA</option>
+                            <option value="CCC">CCC</option>
+                            <option value="DDD">DDD</option>
+                            <option value="EEE">EEE</option>
+                            <option value="FFF">FFF</option>
+                            <option value="GGG">GGG</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%; display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="assessment_type_3" class="col-form-label">assessment_type:</label>
-                      <input class="form-control" id="assessment_type_3" name="assessment_type_3">
+                      <select class="form-select" aria-label="Default select example" name="assessment_type_3">
+                            <option selected></option>
+                            <option value="TMA">TMA</option>
+                            <option value="CMA">CMA</option>
+                            <option value="EXAM">EXAM</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%;display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
                         <label for="score_3" class="col-form-label">score:</label>
                         <input class="form-control" id="score_3" name="score_3">
+                    </div>
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="semester_3" class="col-form-label">semester:</label>
+                      <select class="form-select" aria-label="Default select example" name="semester_3">
+                            <option selected></option>
+                            <option value="2013J">2013J</option>
+                            <option value="2013B">2013B</option>
+                            <option value="2014J">2014J</option>
+                            <option value="2014B">2014B</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -107,17 +201,41 @@
                 </h2>
                 <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
                   <div class="accordion-body">
-                    <div class="mb-3" style="width: 30%;float: left;">
+                    <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_4" class="col-form-label">code_module:</label>
-                      <input class="form-control" id="code_module_4" name="code_module_4">
+                      <select class="form-select" aria-label="Default select example" name="code_module_4">
+                            <option selected></option>
+                            <option value="AAA">AAA</option>
+                            <option value="BBB">BBB</option>
+                            <option value="CCC">CCC</option>
+                            <option value="DDD">DDD</option>
+                            <option value="EEE">EEE</option>
+                            <option value="FFF">FFF</option>
+                            <option value="GGG">GGG</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%; display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="assessment_type_4" class="col-form-label">assessment_type:</label>
-                      <input class="form-control" id="assessment_type_4" name="assessment_type_4">
+                      <select class="form-select" aria-label="Default select example" name="assessment_type_4">
+                            <option selected></option>
+                            <option value="TMA">TMA</option>
+                            <option value="CMA">CMA</option>
+                            <option value="EXAM">EXAM</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%;display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
                         <label for="score_4" class="col-form-label">score:</label>
                         <input class="form-control" id="score_4" name="score_4">
+                    </div>
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="semester_4" class="col-form-label">semester:</label>
+                      <select class="form-select" aria-label="Default select example" name="semester_4">
+                            <option selected></option>
+                            <option value="2013J">2013J</option>
+                            <option value="2013B">2013B</option>
+                            <option value="2014J">2014J</option>
+                            <option value="2014B">2014B</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -133,17 +251,41 @@
                 </h2>
                 <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
                   <div class="accordion-body">
-                    <div class="mb-3" style="width: 30%;float: left;">
+                    <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_5" class="col-form-label">code_module:</label>
-                      <input class="form-control" id="code_module_5" name="code_module_5">
+                      <select class="form-select" aria-label="Default select example" name="code_module_5">
+                            <option selected></option>
+                            <option value="AAA">AAA</option>
+                            <option value="BBB">BBB</option>
+                            <option value="CCC">CCC</option>
+                            <option value="DDD">DDD</option>
+                            <option value="EEE">EEE</option>
+                            <option value="FFF">FFF</option>
+                            <option value="GGG">GGG</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%; display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="assessment_type_5" class="col-form-label">assessment_type:</label>
-                      <input class="form-control" id="assessment_type_5" name="assessment_type_5">
+                      <select class="form-select" aria-label="Default select example" name="assessment_type_5">
+                            <option selected></option>
+                            <option value="TMA">TMA</option>
+                            <option value="CMA">CMA</option>
+                            <option value="EXAM">EXAM</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%;display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
                         <label for="score_5" class="col-form-label">score:</label>
                         <input class="form-control" id="score_5" name="score_5">
+                    </div>
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="semester_5" class="col-form-label">semester:</label>
+                      <select class="form-select" aria-label="Default select example" name="semester_5">
+                            <option selected></option>
+                            <option value="2013J">2013J</option>
+                            <option value="2013B">2013B</option>
+                            <option value="2014J">2014J</option>
+                            <option value="2014B">2014B</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -159,17 +301,41 @@
                 </h2>
                 <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
                   <div class="accordion-body">
-                    <div class="mb-3" style="width: 30%;float: left;">
+                    <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_6" class="col-form-label">code_module:</label>
-                      <input class="form-control" id="code_module_6" name="code_module_6">
+                      <select class="form-select" aria-label="Default select example" name="code_module_6">
+                            <option selected></option>
+                            <option value="AAA">AAA</option>
+                            <option value="BBB">BBB</option>
+                            <option value="CCC">CCC</option>
+                            <option value="DDD">DDD</option>
+                            <option value="EEE">EEE</option>
+                            <option value="FFF">FFF</option>
+                            <option value="GGG">GGG</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%; display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="assessment_type_6" class="col-form-label">assessment_type:</label>
-                      <input class="form-control" id="assessment_type_6" name="assessment_type_6">
+                      <select class="form-select" aria-label="Default select example" name="assessment_type_6">
+                            <option selected></option>
+                            <option value="TMA">TMA</option>
+                            <option value="CMA">CMA</option>
+                            <option value="EXAM">EXAM</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%;display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
                         <label for="score_6" class="col-form-label">score:</label>
                         <input class="form-control" id="score_6" name="score_6">
+                    </div>
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="semester_6" class="col-form-label">semester:</label>
+                      <select class="form-select" aria-label="Default select example" name="semester_6">
+                            <option selected></option>
+                            <option value="2013J">2013J</option>
+                            <option value="2013B">2013B</option>
+                            <option value="2014J">2014J</option>
+                            <option value="2014B">2014B</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -185,17 +351,41 @@
                 </h2>
                 <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
                   <div class="accordion-body">
-                    <div class="mb-3" style="width: 30%;float: left;">
+                    <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_7" class="col-form-label">code_module:</label>
-                      <input class="form-control" id="code_module_7" name="code_module_7">
+                      <select class="form-select" aria-label="Default select example" name="code_module_7">
+                            <option selected></option>
+                            <option value="AAA">AAA</option>
+                            <option value="BBB">BBB</option>
+                            <option value="CCC">CCC</option>
+                            <option value="DDD">DDD</option>
+                            <option value="EEE">EEE</option>
+                            <option value="FFF">FFF</option>
+                            <option value="GGG">GGG</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%; display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="assessment_type_7" class="col-form-label">assessment_type:</label>
-                      <input class="form-control" id="assessment_type_7" name="assessment_type_7">
+                      <select class="form-select" aria-label="Default select example" name="assessment_type_7">
+                            <option selected></option>
+                            <option value="TMA">TMA</option>
+                            <option value="CMA">CMA</option>
+                            <option value="EXAM">EXAM</option>
+                      </select>
                     </div>
-                    <div class="mb-3" style="width: 30%;display: inline-block; margin-left: 50px">
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
                         <label for="score_7" class="col-form-label">score:</label>
                         <input class="form-control" id="score_7" name="score_7">
+                    </div>
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="semester_7" class="col-form-label">semester:</label>
+                      <select class="form-select" aria-label="Default select example" name="semester_7">
+                            <option selected></option>
+                            <option value="2013J">2013J</option>
+                            <option value="2013B">2013B</option>
+                            <option value="2014J">2014J</option>
+                            <option value="2014B">2014B</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -203,8 +393,11 @@
             </div>
         </form>
       </div>
+      <!--==============================
+       footer
+      =================================-->
       <div class="modal-footer">
-        <a href="{{ url_for('main_real') }}" class="btn btn-secondary"  >Close</a>
+        <a href="{{ url_for('main_real',random_id = random_id) }}" class="btn btn-secondary"  >Close</a>
         <button type="submit" form="popup_form" class="btn btn-primary">Send message</button>
       </div>
     </div>
