@@ -27,13 +27,27 @@
             <div class="mb-3" style="width: 45%;margin-left: 40px;display: inline-block">
                  <label for="gender" class="col-form-label" style="float: left">gender:</label>
                  <select class="form-select" aria-label="Default select example" name="gender" style="width: 50%; margin-left: 150px;">
-                            <option value="M">male<option>
+                            <option value="M">male</option>
                             <option value="F">female</option>
                  </select>
             </div>
             <div class="mb-3" style="width: 45%;margin-left: 20px;float: left">
                  <label for="region" class="col-form-label" style="float: left">region:</label>
-                 <input class="form-control" id="region" name="region" style="width: 50%; margin-left: 150px; ">
+                 <select class="form-select"  aria-label="Default select example" name="region" style="width: 50%; margin-left: 150px;">
+                       <option selected>East Anglian Region</option>
+                       <option value="Scotland">Scotland</option>
+                       <option value="North Western Region">North Western Region</option>
+                       <option value="South East Region">South East Region</option>
+                       <option value="West Midlands Region">West Midlands Region</option>
+                       <option value="Wales">Wales</option>
+                       <option value="North Region">North Region</option>
+                       <option value="South Region">South Region</option>
+                       <option value="South West Region">South West Region</option>
+                       <option value="Ireland">Ireland</option>
+                       <option value="East Midlands Region">East Midlands Region</option>
+                       <option value="Yorkshire Region">Yorkshire Region</option>
+                       <option value="London Region">London Region</option>
+                 </select>
             </div>
             <div class="mb-3" style="width: 45%;margin-left: 40px;display: inline-block">
                  <label for="highest_education" class="col-form-label" style="float: left">education:</label>
@@ -54,7 +68,8 @@
                   <div class="accordion-body">
                     <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_1" class="col-form-label">code_module:</label>
-                      <select class="form-select" aria-label="Default select example" name="code_module_1">
+                      <select id="alpha_1" class="form-select" aria-label="Default select example" name="code_module_1"
+                              onchange="changefield('alpha_1',beta_1,'/changeselectfield/')">
                             <option selected></option>
                             <option value="AAA">AAA</option>
                             <option value="BBB">BBB</option>
@@ -66,19 +81,6 @@
                       </select>
                     </div>
                     <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
-                      <label for="assessment_type_1" class="col-form-label">assessment_type:</label>
-                      <select class="form-select" aria-label="Default select example" name="assessment_type_1">
-                            <option selected></option>
-                            <option value="TMA">TMA</option>
-                            <option value="CMA">CMA</option>
-                            <option value="EXAM">EXAM</option>
-                      </select>
-                    </div>
-                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
-                        <label for="score_1" class="col-form-label">score:</label>
-                        <input class="form-control" id="score_1" name="score_1">
-                    </div>
-                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="semester_1" class="col-form-label">semester:</label>
                       <select class="form-select" aria-label="Default select example" name="semester_1">
                             <option selected></option>
@@ -87,6 +89,49 @@
                             <option value="2014J">2014J</option>
                             <option value="2014B">2014B</option>
                       </select>
+                    </div>
+                    <!--==============================
+                       assessment_type_1_1
+                      =================================-->
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="assessment_type_1_1" class="col-form-label">assessment_type:</label>
+                      <select id="beta_1" class="form-select" aria-label="Default select example" name="assessment_type_1_1">
+                          <option selected></option>
+                      </select>
+                    </div>
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                        <label for="score_1" class="col-form-label">score:</label>
+                        <input class="form-control" id="score_1" name="score_1_1">
+                    </div>
+                    <!--==============================
+                       assessment_type_1_2
+                      =================================-->
+                    <div id="alpha_1_2" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_1_2" class="col-form-label">assessment_type:</label>
+                          <select id="beta_1" class="form-select" aria-label="Default select example" name="assessment_type_1_2">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_1_2" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_1_2" name="score_1_2">
+                        </div>
+                    </div>
+                    <!--==============================
+                       assessment_type_1_3
+                      =================================-->
+                    <div id="alpha_1_3" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_1_3" class="col-form-label">assessment_type:</label>
+                          <select id="beta_1" class="form-select" aria-label="Default select example" name="assessment_type_1_3">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_1_3" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_1_3" name="score_1_3">
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -104,7 +149,8 @@
                   <div class="accordion-body">
                     <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_2" class="col-form-label">code_module:</label>
-                      <select class="form-select" aria-label="Default select example" name="code_module_2">
+                      <select id="alpha_2" class="form-select" aria-label="Default select example" name="code_module_2"
+                              onchange="changefield('alpha_2',beta_2,'/changeselectfield/')">
                             <option selected></option>
                             <option value="AAA">AAA</option>
                             <option value="BBB">BBB</option>
@@ -116,19 +162,6 @@
                       </select>
                     </div>
                     <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
-                      <label for="assessment_type_2" class="col-form-label">assessment_type:</label>
-                      <select class="form-select" aria-label="Default select example" name="assessment_type_2">
-                            <option selected></option>
-                            <option value="TMA">TMA</option>
-                            <option value="CMA">CMA</option>
-                            <option value="EXAM">EXAM</option>
-                      </select>
-                    </div>
-                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
-                        <label for="score_2" class="col-form-label">score:</label>
-                        <input class="form-control" id="score_2" name="score_2">
-                    </div>
-                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="semester_2" class="col-form-label">semester:</label>
                       <select class="form-select" aria-label="Default select example" name="semester_2">
                             <option selected></option>
@@ -137,6 +170,49 @@
                             <option value="2014J">2014J</option>
                             <option value="2014B">2014B</option>
                       </select>
+                    </div>
+                    <!--==============================
+                       assessment_type_2_1
+                      =================================-->
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="assessment_type_2_1" class="col-form-label">assessment_type:</label>
+                      <select id="beta_2" class="form-select" aria-label="Default select example" name="assessment_type_2_1">
+                                <option selected></option>
+                      </select>
+                    </div>
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                        <label for="score_2_1" class="col-form-label">score:</label>
+                        <input class="form-control" id="score_2_1" name="score_2_1">
+                    </div>
+                    <!--==============================
+                       assessment_type_2_2
+                      =================================-->
+                    <div id="alpha_2_2" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_2_2" class="col-form-label">assessment_type:</label>
+                          <select id="beta_2" class="form-select" aria-label="Default select example" name="assessment_type_2_2">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_2_2" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_2_2" name="score_2_2">
+                        </div>
+                    </div>
+                    <!--==============================
+                       assessment_type_2_3
+                      =================================-->
+                    <div id="alpha_2_3" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_2_3" class="col-form-label">assessment_type:</label>
+                          <select id="beta_2" class="form-select" aria-label="Default select example" name="assessment_type_2_3">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_2_3" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_2_3" name="score_2_3">
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -153,29 +229,18 @@
                 <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                   <div class="accordion-body">
                     <div class="mb-3" style="width: 20%;float: left;">
-                      <label for="code_module_3" class="col-form-label">code_module:</label>
-                      <select class="form-select" aria-label="Default select example" name="code_module_3">
+                      <label  for="code_module_3" class="col-form-label">code_module:</label>
+                      <select id="alpha_3" class="form-select" aria-label="Default select example" name="code_module_3"
+                              onchange="changefield('alpha_3',beta_3,'/changeselectfield/')">
                             <option selected></option>
                             <option value="AAA">AAA</option>
+                            <option value="BBB">BBB</option>
                             <option value="CCC">CCC</option>
                             <option value="DDD">DDD</option>
                             <option value="EEE">EEE</option>
                             <option value="FFF">FFF</option>
                             <option value="GGG">GGG</option>
                       </select>
-                    </div>
-                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
-                      <label for="assessment_type_3" class="col-form-label">assessment_type:</label>
-                      <select class="form-select" aria-label="Default select example" name="assessment_type_3">
-                            <option selected></option>
-                            <option value="TMA">TMA</option>
-                            <option value="CMA">CMA</option>
-                            <option value="EXAM">EXAM</option>
-                      </select>
-                    </div>
-                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
-                        <label for="score_3" class="col-form-label">score:</label>
-                        <input class="form-control" id="score_3" name="score_3">
                     </div>
                     <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="semester_3" class="col-form-label">semester:</label>
@@ -186,6 +251,49 @@
                             <option value="2014J">2014J</option>
                             <option value="2014B">2014B</option>
                       </select>
+                    </div>
+                    <!--==============================
+                       assessment_type_3_1
+                      =================================-->
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="assessment_type_3_1" class="col-form-label">assessment_type:</label>
+                      <select id="beta_3" class="form-select" aria-label="Default select example" name="assessment_type_3_1">
+                                <option selected></option>
+                      </select>
+                    </div>
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                        <label for="score_3_1" class="col-form-label">score:</label>
+                        <input class="form-control" id="score_3_1" name="score_3_1">
+                    </div>
+                    <!--==============================
+                       assessment_type_3_2
+                      =================================-->
+                    <div id="alpha_3_2" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_3_2" class="col-form-label">assessment_type:</label>
+                          <select id="beta_3" class="form-select" aria-label="Default select example" name="assessment_type_3_2">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_3_2" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_3_2" name="score_3_2">
+                        </div>
+                    </div>
+                    <!--==============================
+                       assessment_type_3_3
+                      =================================-->
+                    <div id="alpha_3_3" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_3_3" class="col-form-label">assessment_type:</label>
+                          <select id="beta_3" class="form-select" aria-label="Default select example" name="assessment_type_3_3">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_3_3" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_3_3" name="score_3_3">
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -203,7 +311,8 @@
                   <div class="accordion-body">
                     <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_4" class="col-form-label">code_module:</label>
-                      <select class="form-select" aria-label="Default select example" name="code_module_4">
+                      <select id="alpha_4" class="form-select" aria-label="Default select example" name="code_module_4"
+                              onchange="changefield('alpha_4',beta_4,'/changeselectfield/')">
                             <option selected></option>
                             <option value="AAA">AAA</option>
                             <option value="BBB">BBB</option>
@@ -215,19 +324,6 @@
                       </select>
                     </div>
                     <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
-                      <label for="assessment_type_4" class="col-form-label">assessment_type:</label>
-                      <select class="form-select" aria-label="Default select example" name="assessment_type_4">
-                            <option selected></option>
-                            <option value="TMA">TMA</option>
-                            <option value="CMA">CMA</option>
-                            <option value="EXAM">EXAM</option>
-                      </select>
-                    </div>
-                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
-                        <label for="score_4" class="col-form-label">score:</label>
-                        <input class="form-control" id="score_4" name="score_4">
-                    </div>
-                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="semester_4" class="col-form-label">semester:</label>
                       <select class="form-select" aria-label="Default select example" name="semester_4">
                             <option selected></option>
@@ -236,6 +332,49 @@
                             <option value="2014J">2014J</option>
                             <option value="2014B">2014B</option>
                       </select>
+                    </div>
+                    <!--==============================
+                       assessment_type_4_1
+                      =================================-->
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="assessment_type_4_1" class="col-form-label">assessment_type:</label>
+                      <select id="beta_4" class="form-select" aria-label="Default select example" name="assessment_type_4_1">
+                                <option selected></option>
+                      </select>
+                    </div>
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                        <label for="score_4_1" class="col-form-label">score:</label>
+                        <input class="form-control" id="score_4_1" name="score_4_1">
+                    </div>
+                    <!--==============================
+                       assessment_type_4_2
+                      =================================-->
+                    <div id="alpha_4_2" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_4_2" class="col-form-label">assessment_type:</label>
+                          <select id="beta_4" class="form-select" aria-label="Default select example" name="assessment_type_4_2">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_4_2" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_4_2" name="score_4_2">
+                        </div>
+                    </div>
+                    <!--==============================
+                       assessment_type_4_3
+                      =================================-->
+                    <div id="alpha_4_3" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_4_3" class="col-form-label">assessment_type:</label>
+                          <select id="beta_4" class="form-select" aria-label="Default select example" name="assessment_type_4_3">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_4_3" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_4_3" name="score_4_3">
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -253,7 +392,8 @@
                   <div class="accordion-body">
                     <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_5" class="col-form-label">code_module:</label>
-                      <select class="form-select" aria-label="Default select example" name="code_module_5">
+                      <select id="alpha_5" class="form-select" aria-label="Default select example" name="code_module_5"
+                              onchange="changefield('alpha_5',beta_5,'/changeselectfield/')">
                             <option selected></option>
                             <option value="AAA">AAA</option>
                             <option value="BBB">BBB</option>
@@ -265,19 +405,6 @@
                       </select>
                     </div>
                     <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
-                      <label for="assessment_type_5" class="col-form-label">assessment_type:</label>
-                      <select class="form-select" aria-label="Default select example" name="assessment_type_5">
-                            <option selected></option>
-                            <option value="TMA">TMA</option>
-                            <option value="CMA">CMA</option>
-                            <option value="EXAM">EXAM</option>
-                      </select>
-                    </div>
-                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
-                        <label for="score_5" class="col-form-label">score:</label>
-                        <input class="form-control" id="score_5" name="score_5">
-                    </div>
-                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="semester_5" class="col-form-label">semester:</label>
                       <select class="form-select" aria-label="Default select example" name="semester_5">
                             <option selected></option>
@@ -286,6 +413,49 @@
                             <option value="2014J">2014J</option>
                             <option value="2014B">2014B</option>
                       </select>
+                    </div>
+                    <!--==============================
+                       assessment_type_5_1
+                      =================================-->
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="assessment_type_5_1" class="col-form-label">assessment_type:</label>
+                      <select id="beta_5" class="form-select" aria-label="Default select example" name="assessment_type_5_1">
+                                <option selected></option>
+                      </select>
+                    </div>
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                        <label for="score_5_1" class="col-form-label">score:</label>
+                        <input class="form-control" id="score_5_1" name="score_5_1">
+                    </div>
+                    <!--==============================
+                       assessment_type_5_2
+                      =================================-->
+                    <div id="alpha_5_2" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_5_2" class="col-form-label">assessment_type:</label>
+                          <select id="beta_5" class="form-select" aria-label="Default select example" name="assessment_type_5_2">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_5_2" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_5_2" name="score_5_2">
+                        </div>
+                    </div>
+                    <!--==============================
+                       assessment_type_5_3
+                      =================================-->
+                    <div id="alpha_5_3" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_5_3" class="col-form-label">assessment_type:</label>
+                          <select id="beta_5" class="form-select" aria-label="Default select example" name="assessment_type_5_3">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_5_3" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_5_3" name="score_5_3">
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -303,7 +473,8 @@
                   <div class="accordion-body">
                     <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_6" class="col-form-label">code_module:</label>
-                      <select class="form-select" aria-label="Default select example" name="code_module_6">
+                      <select id="alpha_6" class="form-select" aria-label="Default select example" name="code_module_6"
+                              onchange="changefield('alpha_6',beta_6,'/changeselectfield/')">
                             <option selected></option>
                             <option value="AAA">AAA</option>
                             <option value="BBB">BBB</option>
@@ -315,19 +486,6 @@
                       </select>
                     </div>
                     <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
-                      <label for="assessment_type_6" class="col-form-label">assessment_type:</label>
-                      <select class="form-select" aria-label="Default select example" name="assessment_type_6">
-                            <option selected></option>
-                            <option value="TMA">TMA</option>
-                            <option value="CMA">CMA</option>
-                            <option value="EXAM">EXAM</option>
-                      </select>
-                    </div>
-                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
-                        <label for="score_6" class="col-form-label">score:</label>
-                        <input class="form-control" id="score_6" name="score_6">
-                    </div>
-                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="semester_6" class="col-form-label">semester:</label>
                       <select class="form-select" aria-label="Default select example" name="semester_6">
                             <option selected></option>
@@ -336,6 +494,49 @@
                             <option value="2014J">2014J</option>
                             <option value="2014B">2014B</option>
                       </select>
+                    </div>
+                    <!--==============================
+                       assessment_type_6_1
+                      =================================-->
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="assessment_type_6_1" class="col-form-label">assessment_type:</label>
+                      <select id="beta_6" class="form-select" aria-label="Default select example" name="assessment_type_6_1">
+                                <option selected></option>
+                      </select>
+                    </div>
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                        <label for="score_6_1" class="col-form-label">score:</label>
+                        <input class="form-control" id="score_6_1" name="score_6_1">
+                    </div>
+                    <!--==============================
+                       assessment_type_6_2
+                      =================================-->
+                    <div id="alpha_6_2" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_6_2" class="col-form-label">assessment_type:</label>
+                          <select id="beta_6" class="form-select" aria-label="Default select example" name="assessment_type_6_2">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_6_2" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_6_2" name="score_6_2">
+                        </div>
+                    </div>
+                    <!--==============================
+                       assessment_type_6_3
+                      =================================-->
+                    <div id="alpha_6_3" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_6_3" class="col-form-label">assessment_type:</label>
+                          <select id="beta_6" class="form-select" aria-label="Default select example" name="assessment_type_6_3">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_6_3" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_6_3" name="score_6_3">
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -353,7 +554,8 @@
                   <div class="accordion-body">
                     <div class="mb-3" style="width: 20%;float: left;">
                       <label for="code_module_7" class="col-form-label">code_module:</label>
-                      <select class="form-select" aria-label="Default select example" name="code_module_7">
+                      <select id="alpha_7" class="form-select" aria-label="Default select example" name="code_module_7"
+                              onchange="changefield('alpha_7',beta_7,'/changeselectfield/')">
                             <option selected></option>
                             <option value="AAA">AAA</option>
                             <option value="BBB">BBB</option>
@@ -365,19 +567,6 @@
                       </select>
                     </div>
                     <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
-                      <label for="assessment_type_7" class="col-form-label">assessment_type:</label>
-                      <select class="form-select" aria-label="Default select example" name="assessment_type_7">
-                            <option selected></option>
-                            <option value="TMA">TMA</option>
-                            <option value="CMA">CMA</option>
-                            <option value="EXAM">EXAM</option>
-                      </select>
-                    </div>
-                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
-                        <label for="score_7" class="col-form-label">score:</label>
-                        <input class="form-control" id="score_7" name="score_7">
-                    </div>
-                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="semester_7" class="col-form-label">semester:</label>
                       <select class="form-select" aria-label="Default select example" name="semester_7">
                             <option selected></option>
@@ -386,6 +575,50 @@
                             <option value="2014J">2014J</option>
                             <option value="2014B">2014B</option>
                       </select>
+                    </div>
+                    <!--==============================
+                       assessment_type_7_1
+                      =================================-->
+                    <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
+                      <label for="assessment_type_7_1" class="col-form-label">assessment_type:</label>
+                      <select id="beta_7" class="form-select" aria-label="Default select example" name="assessment_type_7_1">
+                                <option selected></option>
+                      </select>
+                    </div>
+                    <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                        <label for="score_7_1" class="col-form-label">score:</label>
+                        <input class="form-control" id="score_7_1" name="score_7_1">
+                    </div>
+
+                    <!--==============================
+                       assessment_type_7_2
+                      =================================-->
+                    <div id="alpha_7_2" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_7_2" class="col-form-label">assessment_type:</label>
+                          <select id="beta_7" class="form-select" aria-label="Default select example" name="assessment_type_7_2">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_7_2" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_7_2" name="score_7_2">
+                        </div>
+                    </div>
+                    <!--==============================
+                       assessment_type_7_3
+                      =================================-->
+                    <div id="alpha_7_3" style="display: none">
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 555px">
+                          <label for="assessment_type_7_3" class="col-form-label">assessment_type:</label>
+                          <select id="beta_7" class="form-select" aria-label="Default select example" name="assessment_type_7_3">
+                                <option selected></option>
+                          </select>
+                        </div>
+                        <div class="mb-3" style="width: 20%;display: inline-block; margin-left: 50px">
+                            <label for="score_7_3" class="col-form-label">score:</label>
+                            <input class="form-control" id="score_7_3" name="score_7_3">
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -412,5 +645,50 @@
             console.log("test")
             $("#exampleModal").modal("show")
         })
-  </script>
+
+        function changefield(choose, id, url) {
+            let data;
+            const select = document.getElementById(choose);
+            const tempId_2 = choose + "_2";
+            const tempId_3 = choose + "_3";
+            $(id).html(""); //每次重新选择当前列表框，就清空下一级列表框。
+            $('#'+tempId_2).css("display","none")
+            $('#'+tempId_3).css("display","none")
+            let Name;
+            console.log(tempId_2)
+            console.log(tempId_3)
+            for (let i = 0; i < select.length; i++) {
+                if (select[i].selected) { //判断被选中项
+                    Name = select[i].text;
+                    data = {
+                        "name": Name
+                    };
+                    $.post({ //发起ajax请求
+                        url: url,
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        {#dataType:'json'#}
+                        contentType: "application/json; charset=UTF-8",
+                        success: function (data) {
+                            if (data) {
+                                console.log(data)
+                                if (data.length === 2) {
+                                    $("#"+tempId_2).css("display","block")
+                                }else if (data.length === 3){
+                                    $("#"+tempId_2).css("display","block")
+                                    $("#"+tempId_3).css("display","block")
+                                }
+                                for (i = 0; i < data.length; i++) {
+                                    $("<option value='" + data[i] + "'>" + data[i] + "</option>").appendTo(id);
+                                }
+                            } else {
+                                alert('error')
+                            }
+                        }
+                    });
+                }
+            }
+        }
+</script>
+
 {% endblock %}

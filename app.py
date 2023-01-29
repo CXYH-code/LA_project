@@ -1,5 +1,5 @@
 import random
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, jsonify
 from pymongo import MongoClient
 # this is the objectID() class you'll use to convert string IDs to ObjectID objects.
 from bson.objectid import ObjectId
@@ -118,13 +118,29 @@ def input_popup():
             course = {}
 
             num_code_module = "code_module_" + str(i)
-            num_assessment_type = "assessment_type_" + str(i)
-            num_score = "score_" + str(i)
             num_semester = "semester_" + str(i)
+            num_assessment_type_1 = "assessment_type_" + str(i)+"_1"
+            num_assessment_type_2 = "assessment_type_" + str(i)+"_2"
+            num_assessment_type_3 = "assessment_type_" + str(i)+"_3"
+            num_score_1= "score_" + str(i)+"_1"
+            num_score_2 = "score_" + str(i) + "_2"
+            num_score_3 = "score_" + str(i) + "_3"
+            print(f"{num_assessment_type_1}:{num_score_1}")
+            print(f"{num_assessment_type_2}:{num_score_2}")
+            print(f"{num_assessment_type_3}:{num_score_3}")
 
-            assessment_type = request.form[num_assessment_type]
+            # Each course accepts three assessment_types,score, some of them may be empty if they are not filled in.
+            assessment_type_1 = request.form[num_assessment_type_1]
+            assessment_type_2 = request.form[num_assessment_type_2]
+            assessment_type_3 = request.form[num_assessment_type_3]
+            score_1 = request.form[num_score_1]
+            score_2 = request.form[num_score_2]
+            score_3 = request.form[num_score_3]
+            print(f"{assessment_type_1}:{score_1}")
+            print(f"{assessment_type_2}:{score_2}")
+            print(f"{assessment_type_3}:{score_3}")
+
             code_module = request.form[num_code_module]
-            score = request.form[num_score]
             semester = request.form[num_semester]
 
             # if course information is not none, then write it into database
@@ -134,12 +150,12 @@ def input_popup():
                     {'conde_module': code_module, 'code_presentation': semester, 'id_student': int(student_id),
                      'gender': gender, 'region': region, 'highest_education': education, 'age_band': age_band})
                 flag = True
-            course['code_module'] = code_module
-            course['assessment_type'] = assessment_type
-            course['score'] = score
-            course['semester'] = semester
-
-            courses.append(course)
+            # course['code_module'] = code_module
+            # course['assessment_type'] = assessment_type
+            # course['score'] = score
+            # course['semester'] = semester
+            #
+            # courses.append(course)
         print(f"student_id:{student_id},{type(student_id)}")
         print(f"random_id:{random_id}")
         for item in courses:
@@ -147,6 +163,22 @@ def input_popup():
         return redirect(url_for('main_real', id_student=student_id, flag=flag))
     return render_template('input_popup.html', random_id=random_id, info=info)
 
+
+@app.route('/changeselectfield/', methods=['GET', 'POST'])
+def changeselectfield():
+    if request.method == "POST":
+        data = request.get_json()
+        name = data['name']
+        print(name)
+        if name == "AAA":
+            assessment_type = ['TMA', 'CMA']
+        elif name == "BBB":
+            assessment_type = ['TMA', 'CMA', 'Exam']
+        else:
+            assessment_type =[]
+        return jsonify(assessment_type)
+    else:
+        return {}
 
 # just for test how to combine flask and mongodb
 # @app.route('/test', methods=('GET', 'POST'))
