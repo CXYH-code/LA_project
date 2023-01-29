@@ -1,8 +1,9 @@
+import pickle
 import random
 from flask import Flask, render_template, redirect, url_for, request, jsonify
 from pymongo import MongoClient
 # this is the objectID() class you'll use to convert string IDs to ObjectID objects.
-from bson.objectid import ObjectId
+import pandas as pd
 import config
 
 app = Flask(__name__)
@@ -11,7 +12,7 @@ app = Flask(__name__)
 app.config.from_object(config)
 
 # connect to mongodb
-client = MongoClient('localhost', 27017)
+client = MongoClient('mongodb+srv://rubberduck:la2023@cluster0.mqzk6yg.mongodb.net/?retryWrites=true&w=majority')
 
 # create database "flask.db", just for testing
 db = client.project_db
@@ -57,12 +58,22 @@ def main_real():
     elif request.method == 'POST':
         student_id = request.form['student_id']
         data = student_info.find({"id_student": int(student_id)})
-        if data is not None:
+        if data is not None and data !=[]:
             info = list(data)[0]
             print(f"+++++++{type(info['id_student'])}")
         else:
             print(f"-------")
             info = {}
+
+    if info:
+        # execute the recommendation model
+        # d = {'id_student': [80329], 'code_module': ['AAA']}
+        # input_test = pd.DataFrame(data=d)
+        # filename = 'finalized_model.sav'
+        # loaded_model = pickle.load(open(filename, 'rb'))
+        # result = loaded_model.recommend_k_items(input_test, top_k=3, remove_seen=True)["code_module"][0]
+        # print(result)
+        print("recommendation")
     print(f"info:{info}")
     print(f"random_id:{random_id}")
     return render_template("main_real.html", random_id=random_id, info=info, flag=flag, student_id=student_id)
