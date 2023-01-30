@@ -82,7 +82,7 @@
                     </div>
                     <div class="mb-3" style="width: 20%; display: inline-block; margin-left: 50px">
                       <label for="semester_1" class="col-form-label">semester:</label>
-                      <select class="form-select" aria-label="Default select example" name="semester_1">
+                      <select id="alpha_1_year" class="form-select" aria-label="Default select example" name="semester_1">
                             <option selected></option>
                             <option value="2013J">2013J</option>
                             <option value="2013B">2013B</option>
@@ -630,6 +630,12 @@
        footer
       =================================-->
       <div class="modal-footer">
+          {% if message %}
+             <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-right: 150px">
+                     {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endif %}
         <a href="{{ url_for('main_real',random_id = random_id) }}" class="btn btn-secondary"  >Close</a>
         <button type="submit" form="popup_form" class="btn btn-primary">Send message</button>
       </div>
@@ -678,6 +684,7 @@
                                     $("#"+tempId_2).css("display","block")
                                     $("#"+tempId_3).css("display","block")
                                 }
+                                $("<option selected='selected'  value=''></option> ").appendTo(id);
                                 for (i = 0; i < data.length; i++) {
                                     $("<option value='" + data[i] + "'>" + data[i] + "</option>").appendTo(id);
                                 }
