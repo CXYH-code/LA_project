@@ -40,7 +40,7 @@ client = MongoClient('mongodb+srv://rubberduck:la2023@cluster0.mqzk6yg.mongodb.n
 db = client.project_db
 # create a collection "todos", just for testing
 student_info = db.studentInfo
-studentInfo_test = db.studentInfo_test
+studentInfo_test = db.studentInfo_testv2
 
 
 @app.route('/')
@@ -88,23 +88,116 @@ def main_real():
             print(f"-----some thing wrong, nothing be found in database with student_id:{student_id}-----")
             info = {}
 
-    print(f"info is not none:{info}----student_id:{student_id}")
+    # print(f"info is not none:{info}----student_id:{student_id}")
+    # if info:
+        # print("-------------------recommendation---------------------------")
+        # # execute the recommendation model
+        # courses = ['AAA', 'BBB', 'CCC', 'DDD', 'EEE', 'FFF', 'GGG']
+        # courses_info = student_info.find({"id_student": student_id}, {"code_module": 1, "_id": 0})
+        #
+        # course_selected = list()
+        # print(f"selectd:{courses_info}")
+        # for i in courses_info:
+        #     for v in i.values():
+        #         if type(v) == list:
+        #             course_selected = v
+        #         else:
+        #             v = v[1:-1].replace("'", "").replace("[", "").replace("]", "")
+        #             course_selected.append(v)
+        # #print(f"course_selected:{course_selected}")
+        # courses_not_selected = [x for x in courses if x not in course_selected]
+        # #print(f"courses_not_selected:{courses_not_selected}")
+        # length = len(courses_not_selected)
+        # d = {'id_student': [str(student_id)] * length, 'code_module': courses_not_selected,
+        #      'weighted_score': [np.nan] * length, 'date_registration': [0] * length}
+        #
+        # input_test = pd.DataFrame(data=d)
+        #
+        # # # take data to df
+        # cursor = studentInfo_test.find({})
+        # # # Expand the cursor and construct the DataFrame
+        # df = pd.DataFrame(list(cursor))
+        # # Delete the _id
+        # del df['_id']
+        # row_length = df.shape[0]
+        # df = df[["id_student", "code_module", "weighted_score", "date_registration"]]
+        #
+        # # clean df file
+        # print(df.code_module)
+        # print(df.id_student)
+        # df.code_module = df.code_module.apply(lambda x: x[1:-1].replace("'", "").split(","))
+        # df.weighted_score = df.weighted_score.apply(lambda x: x[1:-1].replace("'", "").split(","))
+        # df = df.explode("code_module")
+        # df = df.explode("weighted_score")
+        # df = df.drop_duplicates(subset=['id_student', 'code_module'], keep='first')
+        # df.weighted_score = df.weighted_score.apply(lambda x: int(float(x)))
+        # df.date_registration = df.date_registration.apply(lambda x: int(float(x)))
+        # df = df[df["weighted_score"]!=0].dropna(subset = ["weighted_score"])
+        #
+        #
+        # model = SAR(
+        #     col_user="id_student",
+        #     col_item="code_module",
+        #     col_rating="weighted_score",
+        #     col_timestamp="date_registration",
+        #     similarity_type="jaccard",
+        #     time_decay_coefficient=30,
+        #     timedecay_formula=True,
+        #     normalize=True
+        # )
+        #
+        # model.fit(df)
+        #
+        # result = model.recommend_k_items(pd.DataFrame(d), remove_seen=True)
+        # print("kkkkk")
+        # print(result)
+        # result = result[result.code_module.isin(courses_not_selected) ]
+        # print(result)
+        # result = result["code_module"].tolist()
+        # print(result)
+        # print(f"===============result:{result}")
+
+    print(f"random_id:{random_id}")
+    return render_template("main_real.html", random_id=random_id, info=info, flag=flag, student_id=student_id,
+                           result=result)
+
+
+@app.route('/result_real')
+def result_real():
+    result = ''
+    student_id = request.args.get("student_id")
+
+    print(request.args.get('info'))
+    print(f"result_page-student_id:{student_id}")
+    info = {}
+    if student_id:
+        data = student_info.find({"id_student": student_id})
+        if data is not None:
+            info = list(data)[0]
+        else:
+            info = {}
     if info:
         print("-------------------recommendation---------------------------")
         # execute the recommendation model
         courses = ['AAA', 'BBB', 'CCC', 'DDD', 'EEE', 'FFF', 'GGG']
         courses_info = student_info.find({"id_student": student_id}, {"code_module": 1, "_id": 0})
-        course_selected = []
+
+        course_selected = list()
         print(f"selectd:{courses_info}")
         for i in courses_info:
             for v in i.values():
-                course_selected = v
-        print(f"course_selected:{course_selected}")
+                if type(v) == list:
+                    course_selected = v
+                else:
+                    v = v[1:-1].replace("'", "").replace("[", "").replace("]", "")
+                    course_selected.append(v)
+        #print(f"course_selected:{course_selected}")
         courses_not_selected = [x for x in courses if x not in course_selected]
-        print(f"courses_not_selected:{courses_not_selected}")
+        #print(f"courses_not_selected:{courses_not_selected}")
         length = len(courses_not_selected)
-        d = {'id_student': [student_id] * length, 'code_module': courses_not_selected,
-             'weighted_score': [np.nan] * length, 'date_registration': [np.nan] * length}
+        d = {'id_student': [str(student_id)] * length, 'code_module': courses_not_selected,
+             'weighted_score': [np.nan] * length, 'date_registration': [0] * length}
+
         input_test = pd.DataFrame(data=d)
 
         # # take data to df
@@ -114,42 +207,42 @@ def main_real():
         # Delete the _id
         del df['_id']
         row_length = df.shape[0]
-        # df.insert(loc=len(df.columns), column='player', value=player_vals)
-        df.insert(loc=len(df.columns), column='date_registration', value=[np.nan] * row_length)
+        df = df[["id_student", "code_module", "weighted_score", "date_registration"]]
+
         # clean df file
+        print(df.code_module)
+        print(df.id_student)
         df.code_module = df.code_module.apply(lambda x: x[1:-1].replace("'", "").split(","))
         df.weighted_score = df.weighted_score.apply(lambda x: x[1:-1].replace("'", "").split(","))
         df = df.explode("code_module")
         df = df.explode("weighted_score")
         df = df.drop_duplicates(subset=['id_student', 'code_module'], keep='first')
         df.weighted_score = df.weighted_score.apply(lambda x: int(float(x)))
+        df.date_registration = df.date_registration.apply(lambda x: int(float(x)))
+        df = df[df["weighted_score"]!=0].dropna(subset = ["weighted_score"])
 
-        filename = 'finalized_model.sav'
-        loaded_model = pickle.load(open(filename, 'rb'))
-        loaded_model.fit(df)
-        # result
-        result = loaded_model.recommend_k_items(input_test, top_k=3, remove_seen=True)["code_module"][0]
+
+        model = SAR(
+            col_user="id_student",
+            col_item="code_module",
+            col_rating="weighted_score",
+            col_timestamp="date_registration",
+            similarity_type="jaccard",
+            time_decay_coefficient=30,
+            timedecay_formula=True,
+            normalize=True
+        )
+
+        model.fit(df)
+
+        result = model.recommend_k_items(pd.DataFrame(d), remove_seen=True)
+        print("kkkkk")
+        print(result)
+        result = result[result.code_module.isin(courses_not_selected) ]
+        print(result)
+        result = result["code_module"].tolist()
+        print(result)
         print(f"===============result:{result}")
-        # result = ['CCC', 'AAA', 'EEE']
-    print(f"info:{info}")
-    print(f"random_id:{random_id}")
-    return render_template("main_real.html", random_id=random_id, info=info, flag=flag, student_id=student_id,
-                           result=result)
-
-
-@app.route('/result_real')
-def result_real():
-    student_id = request.args.get("student_id")
-    result = request.args.getlist("result")
-    print(result)
-    print(f"result_page-student_id:{student_id}")
-    info = {}
-    if student_id:
-        data = student_info.find({"id_student": student_id})
-        if data is not None:
-            info = list(data)[0]
-        else:
-            info = {}
     return render_template("result_real.html", info=info, result=result)
 
 
@@ -396,7 +489,7 @@ def fff():
 
 
 @app.route('/ggg')
-def GGG():
+def ggg():
     year = request.args.get('plot')
     return render_template('GGG.html', year=year)
 
