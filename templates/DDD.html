@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    overview
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.0.3.min.js"></script>
+    <script type="text/javascript">
+        Bokeh.set_log_level("info");
+    </script>
+{% endblock %}
+
+{% block style %}
+<style>
+    .basebox{
+        width: auto;
+        height: 1900px;
+        background-color: #FFEAA7;
+        border-radius: 30px ;
+        border: 1px solid #FFEAA7;
+    }
+    .bar{
+        height: 50%;
+        width: auto;
+        margin-left: 180px;
+    }
+    .pie{
+        height: 50%;
+        width: auto;
+        margin-left: 180px;
+        margin-top: 50px;
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+    <div class="zerogrid">
+        <div class="basebox" >
+            {#    hearder        #}
+            <div style="height: 10%; width: auto;">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary" style="margin-top: 50px;width: 80%;margin-left: 120px; border-radius: 30px; font-weight: bold;">
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                          <a class="nav-link" aria-current="page" href="{{ url_for('bbb', plot='All') }}">All Semester</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" aria-current="page" href="{{ url_for('bbb', plot='2013J') }}">2013Winter</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" aria-current="page" href="{{ url_for('bbb', plot='2013B') }}">2013Summer</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" aria-current="page" href="{{ url_for('bbb', plot='2014J') }}">2014Winter</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" aria-current="page" href="{{ url_for('bbb', plot='2014B') }}">2014Summer</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home page</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </nav>
+                <div style="margin-top: 30px;width: 80%;height: 50px;margin-left: 120px; border-radius: 30px; font-size: 30px;font-weight: 900;color: #6C5CE7;text-align: center">
+                    Visual information about the course BBB
+                </div>
+            </div>
+            {#    body          #}
+            <div id="body" style="height: 90%; width: auto">
+                {% if year == 'All' %}
+                    {#      bar          #}
+                    <div class="bar" style="">
+
+                    </div>
+                    {#      pie           #}
+                    <div class="pie" style="">
+
+                    </div>
+                {% elif year == '2013B' %}
+                    <div class="bar">
+
+                    </div>
+                    <div class="pie">
+ 
+                    </div>
+                {% elif year == '2014B' %}
+                    <div class="bar">
+
+                    </div>
+                    <div class="pie">
+    
+                    </div>
+                {% elif year == '2013J' %}
+                    <div class="bar">
+                    
+                    </div>
+                    <div class="pie">
+                    </div>
+                {% else %}
+                    <div class="bar">
+
+                    </div>
+                    <div class="pie">
+
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
