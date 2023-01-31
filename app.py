@@ -99,9 +99,9 @@ def main_real():
         for i in courses_info:
             for v in i.values():
                 course_selected = v
-        print(course_selected)
-        courses_not_selected = list(set(courses) - set(course_selected))
-        print(courses_not_selected)
+        print(f"course_selected:{course_selected}")
+        courses_not_selected = [x for x in courses if x not in course_selected]
+        print(f"courses_not_selected:{courses_not_selected}")
         length = len(courses_not_selected)
         d = {'id_student': [student_id] * length, 'code_module': courses_not_selected,
              'weighted_score': [np.nan] * length, 'date_registration': [np.nan] * length}
@@ -128,9 +128,9 @@ def main_real():
         loaded_model = pickle.load(open(filename, 'rb'))
         loaded_model.fit(df)
         # result
-        # result = loaded_model.recommend_k_items(input_test, top_k=3, remove_seen=True)["code_module"][0]
-        print(result)
-        result = ['CCC', 'AAA', 'EEE']
+        result = loaded_model.recommend_k_items(input_test, top_k=3, remove_seen=True)["code_module"][0]
+        print(f"===============result:{result}")
+        # result = ['CCC', 'AAA', 'EEE']
     print(f"info:{info}")
     print(f"random_id:{random_id}")
     return render_template("main_real.html", random_id=random_id, info=info, flag=flag, student_id=student_id,
