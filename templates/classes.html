@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    classes
+{% endblock %}
+
+<link rel="stylesheet" href="../static/css/style.css">
+<link rel="stylesheet" href="../static/css/zerogrid.css" type="text/css" media="all">
+<link rel="stylesheet" href="../static/css/responsive.css" type="text/css" media="all">
+
+
+{% block js %}
+
+<script src="../static/js/jquery.js"></script>
+<script src="../static/js/jquery-migrate-1.1.1.js"></script>
+<script src="../static/js/jquery.easing.1.3.js"></script>
+<script src="../static/js/script.js"></script>
+<script src="../static/js/superfish.js"></script>
+<script src="../static/js/jquery.equalheights.js"></script>
+<script src="../static/js/jquery.mobilemenu.js"></script>
+<script src="../static/js/tmStickUp.js"></script>
+<script src="../static/js/jquery.ui.totop.js"></script>
+<script type="text/javascript" src="../static/js/css3-mediaqueries.js"></script>
+<script>
+ $(window).load(function(){
+  $().UItoTop({ easingType: 'easeOutQuart' });
+ }); 
+</script>
+
+{% endblock %}
+
+
+{% block content %}
+<!--[if lt IE 8]>
+ <div style=' clear: both; text-align:center; position: relative;'>
+   <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+     <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+   </a>
+</div>
+<![endif]-->
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<link rel="stylesheet" media="screen" href="css/ie.css">
+<![endif]-->
+
+
+<!--==============================
+              header
+=================================-->
+
+<!--=====================
+          Content
+======================-->
+<section id="content">
+  <div class="zerogrid">
+  	<div class="row">
+	    <div class="col-1-2"><div class="wrap-col pad02">
+	      <h2 class="inset__1">Overview</h2>
+	      <p class="color1"><a href="#">We compare coures depend on gender、age、region、pass rate、scores、previous attempts and so on.You can also find each course's data in above ways </a></p>
+
+			<h4>let's see the different No.1 </h4>
+	      <table id="table-1">
+	        <tr>
+	          <td>Gender</td>
+	          <td> Male:FFF , Female:BBB </td>
+	        </tr>
+	        <tr>
+	          <td>Age</td>
+	          <td>0-35:FFF, >35: BBB</td>
+	        </tr>
+	        <tr>
+	          <td>Number of pass</td>
+	          <td>BBB</td>
+	        </tr>
+	        <tr>
+	          <td>Number of fail</td>
+	          <td>BBB</td>
+	        </tr>
+	        <tr>
+	          <td>0 previous attempts</td>
+	          <td>BBB</td>
+	        </tr>
+	        <tr>
+	          <td>Number of final exams  </td>
+	          <td>FFF</td>
+	        </tr>
+	      </table>
+	    </div></div>
+	    <div class="col-1-2"><div class="wrap-col">
+	      <h2 class="inset__1">For Region</h2>
+	      <p class="color1">Students from East Anglian Region mostly jion class:BBB </p>
+			<p class="color1">Students from London Region mostly jion class:FFF </p>
+			<p class="color1">Students from London Region mostly jion class:FFF </p>
+			<p class="color1">Students from Sorth east Region mostly jion class: BBB</p>
+			<a href="#" class="link-1">find more</a>
+
+<!--	      <div class="col-1-2">-->
+<!--	        <ul class="list-1 inset__1">-->
+<!--	          <li><a href="#">Vivamus at magna non nunc </a></li>-->
+<!--	          <li><a href="#">Aliquam nibh ante, egestas id</a></li>-->
+<!--	          <li><a href="#">Ommodo luctus libero</a></li>-->
+<!--	          <li><a href="#">Faucibus malesuada faucibus </a></li>-->
+<!--	        </ul>-->
+<!--	      </div>-->
+<!--	      <div class="col-1-2">-->
+<!--	        <ul class="list-1 inset__1">-->
+<!--	          <li><a href="#">Mivamus at magna non nunc </a></li>-->
+<!--	          <li><a href="#">Kliquam nibh ante, egestas id</a></li>-->
+<!--	          <li><a href="#">Ammodo luctus liberow</a></li>-->
+<!--	          <li><a href="#">Oaucibus malesuada faucibus </a></li>-->
+<!--	        </ul>-->
+<!--	      </div>-->
+	      <div class="clear"></div>
+	    </div></div>
+    </div>
+    <div class="col-full">
+      <div class="sep-1 offset__1"></div>
+    </div>  
+    <div class="row">
+	    <div class="col-1-2"><div class="wrap-col">
+	      <h3 class="offset__1">For Final Result</h3>
+	      <p class="color1">Most Distinction: BBB </p>
+			<p class="color1">Most Pass: BBB </p>
+			<p class="color1">Most fail: BBB </p>
+			<p class="color1">Most withdrawn: BBB </p>
+	      <br><a href="#" class="link-1">finde more</a>
+	    </div></div>
+	    <div class="col-1-2"><div class="wrap-col">
+	      <h3 class="offset__2">Previous attempts</h3>
+	        <p class="color1">0 previous attempts:BBB</p>
+			  <p class="color1">1 previous attempts:FFF</p>
+			  <p class="color1">2 previous attempts:BBB</p>
+			  <p class="color1">3 previous attempts:BBB</p>
+	         <br>
+	        <a href="#" class="link-1"> find more</a>
+	    </div></div>
+    </div>    
+  </div>
+</section>
+<!--==============================
+              footer_top
+=================================-->
+
+<a href="#" id="toTop" class="fa fa-angle-up"></a>
+
+{% endblock %}

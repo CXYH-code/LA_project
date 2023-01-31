@@ -39,8 +39,7 @@ client = MongoClient('mongodb+srv://rubberduck:la2023@cluster0.mqzk6yg.mongodb.n
 # create database "flask.db", just for testing
 db = client.project_db
 # create a collection "todos", just for testing
-student_info = db.studentInfo
-studentInfo_test = db.studentInfo_testv2
+student_info = db.studentInfo_testv3
 
 
 @app.route('/')
@@ -201,9 +200,10 @@ def result_real():
         input_test = pd.DataFrame(data=d)
 
         # # take data to df
-        cursor = studentInfo_test.find({})
+        cursor = student_info.find({})
         # # Expand the cursor and construct the DataFrame
         df = pd.DataFrame(list(cursor))
+        print( df[df["id_student"]==student_id])
         # Delete the _id
         del df['_id']
         row_length = df.shape[0]
@@ -218,6 +218,7 @@ def result_real():
         df = df.explode("weighted_score")
         df = df.drop_duplicates(subset=['id_student', 'code_module'], keep='first')
         df.weighted_score = df.weighted_score.apply(lambda x: int(float(x)))
+        df.date_registration = df.date_registration.fillna(0)
         df.date_registration = df.date_registration.apply(lambda x: int(float(x)))
         df = df[df["weighted_score"]!=0].dropna(subset = ["weighted_score"])
 
@@ -386,8 +387,14 @@ def input_popup():
         if courses:
             print("insert data into database！")
             student_info.insert_one(
-                {'code_module': courses, 'id_student': student_id, 'weighted_score': ratings,
-                 'gender': gender, 'region': region, 'highest_education': education, 'age_band': age_band})
+                {'id_student': student_id,
+                 'code_module': str(courses),
+                 'weighted_score': str(ratings),
+                 'highest_education': education,
+                 'region': region,
+                 'age_band': age_band,
+                 'gender': gender,
+                 'date_registration' : "0.0"})
             flag = True
         print(f"student_id:{student_id}")
         print(f"random_id:{random_id}")
@@ -528,6 +535,16 @@ def validation(course, semester, assessment_type):
         message = f"the course {course} information is incorrectly! Please check the semester information and " \
                   f"assessment_type carefully. "
     return message
+
+
+@app.route('/classes')
+def classes():
+    return render_template('classes.html')
+
+
+@app.route('/staff')
+def staff():
+    return render_template('staff.html')
 
 
 if __name__ == '__main__':
