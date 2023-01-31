@@ -40,7 +40,7 @@ client = MongoClient('mongodb+srv://rubberduck:la2023@cluster0.mqzk6yg.mongodb.n
 db = client.project_db
 # create a collection "todos", just for testing
 student_info = db.studentInfo
-
+studentInfo_test = db.studentInfo_test
 
 @app.route('/')
 def hello_world():  # put application's code here
@@ -65,20 +65,21 @@ def contact():
 
 @app.route('/main_real', methods=('GET', 'POST'))
 def main_real():
+    result = []
     info = {}
     flag = request.args.get("flag")
     random_id = request.args.get('random_id')
     student_id = None
     if flag:
         student_id = request.args.get('id_student')
-        data = student_info.find({"id_student": int(student_id)})
+        data = student_info.find({"id_student": student_id})
         if data is not None:
             info = list(data)[0]
         else:
             info = {}
     elif request.method == 'POST':
         student_id = request.form['student_id']
-        data = student_info.find({"id_student": int(student_id)})
+        data = student_info.find({"id_student": student_id})
 
         if data is not None and data != []:
             info = list(data)[0]
@@ -99,45 +100,103 @@ def main_real():
                 course_selected.append(v)
         courses_not_selected = list(set(courses) - set(course_selected))
 
-        id_length = len(courses_not_selected)
+        length = len(courses_not_selected)
 
-        d = {'id_student': [student_id] * id_length, 'code_module': courses_not_selected}
-        # d = {'id_student': [80329, 80329, 80329], 'code_module': ['AAA', 'BBB', 'CCC'], 'weighted_score': [1, 2, 3],
-        #     'date_registration': [np.nan] * 3}
-        # input_test = pd.DataFrame(data=d)
-        # filename = 'finalized_model.sav'
-        # loaded_model = pickle.load(open(filename, 'rb'))
-        # data = pd.read_csv('final.csv')
-        # data = pd.concat([data, input_test])
-        # data.tail(10)
-        # loaded_model.fit(data)
+        # d = {'id_student': [student_id] * id_length, 'code_module': courses_not_selected}
+        # input data
+        d = {'id_student': [student_id] * length, 'code_module': courses_not_selected,'weighted_score': [np.nan] * length, 'date_registration': [np.nan] * length}
+        input_test = pd.DataFrame(data=d)
+        # # take data to df
+        cursor = studentInfo_test.find({})
+
+        # # Expand the cursor and construct the DataFrame
+        df = pd.DataFrame(list(cursor))
+        print(df)
+        # Delete the _id
+        del df['_id']
+        row_length = df.shape[0]
+        # df.insert(loc=len(df.columns), column='player', value=player_vals)
+        df.insert(loc=len(df.columns), column='date_registration', value=[np.nan]*row_length)
+        # df = df.drop_duplicates(subset=['id_student', 'code_moudle'], keep='first')
+        # df.weighted_score = df.weighted_score.astype(int)
+        print(df.columns)
+        filename = 'finalized_model.sav'
+        loaded_model = pickle.load(open(filename, 'rb'))
+        loaded_model.fit(df)
         # # result
         # result = loaded_model.recommend_k_items(input_test, top_k=3, remove_seen=True)["code_module"][0]
         # print(result)
-
+        result = ['AAA', 'BBB', 'CCC']
     print(f"info:{info}")
     print(f"random_id:{random_id}")
-    return render_template("main_real.html", random_id=random_id, info=info, flag=flag, student_id=student_id)
+    return render_template("main_real.html", random_id=random_id, info=info, flag=flag, student_id=student_id, result =result)
 
 
 @app.route('/result_real')
 def result_real():
     student_id = request.args.get("student_id")
-
+    result = request.args.getlist("result")
+    print(result)
     print(f"result_page-student_id:{student_id}")
     info = {}
     if student_id:
-        data = student_info.find({"id_student": int(student_id)})
+        data = student_info.find({"id_student": student_id})
         if data is not None:
             info = list(data)[0]
         else:
             info = {}
-    return render_template("result_real.html", info=info)
+    return render_template("result_real.html", info=info, result=result)
 
 
 @app.route('/vis_real')
 def vis_real():
+    first = request.args.get('first')
+    print(first)
+    if first == 'AAA':
+        return redirect(url_for('aaa', year='All'))
     return render_template("vis_real.html")
+
+
+def get_ageband(age):
+    if age >= 35:
+        age_band = '35-55'
+    elif age >= 55:
+        age_band = '55<='
+    else:
+        age_band = '0-35'
+    return age_band
+
+
+def get_rating(code_module, type_score, code_presentation):
+    global rating
+    for k,v in type_score.items():
+        if k == 'CMA':
+            CMA = v
+        elif k == 'TMA':
+            TMA = v
+        elif k == 'EXAM':
+            exam = v
+    print(f"course:{code_module}:CMA{CMA}-TMA{TMA}-EXAM{exam}")
+
+    if code_module == "AAA":
+        rating = CMA * 0.5 + exam * 0.5
+    elif code_module == "BBB":
+        if code_presentation == '2014J':
+            rating = CMA * 0.5 + exam * 0.5
+        else:
+            rating = CMA * 0.025 + TMA * 0.475 + exam * 0.5
+    elif code_module == "CCC":
+        rating = CMA * 0.125 + TMA * 0.375 + exam * 0.5
+    elif code_module == "DDD":
+        if code_presentation == '2014J':
+            rating = CMA * 0.125 + TMA * 0.375 + exam * 0.5
+        else:
+            rating = TMA * 0.5 + exam * 0.5
+    elif code_module == "EEE":
+        rating = TMA * 0.5 + exam * 0.5
+    elif code_module == "EEE":
+        rating = exam
+    return rating
 
 
 @app.route('/input_popup', methods=('GET', 'POST'))
@@ -146,17 +205,11 @@ def input_popup():
     info = request.args.get("info")
     # receive data from popup form.
     if request.method == 'POST':
-        courses = []
 
         # receive general information
         student_id = request.form['student_id']
         age = int(request.form['age'])
-        age_band = '0-35'
-        # convert age to '0-35','35-55','55<='
-        if age >= 35:
-            age_band = '35-55'
-        elif age >= 55:
-            age_band = '55<='
+        age_band = get_ageband(age)
         gender = request.form['gender']
         region = request.form['region']
         education = request.form['highest_education']
@@ -167,8 +220,6 @@ def input_popup():
         flag = False
         # receive course information
         for i in range(1, 8):
-            course = {}
-
             num_code_module = "code_module_" + str(i)
             num_semester = "semester_" + str(i)
             num_assessment_type_1 = "assessment_type_" + str(i) + "_1"
@@ -181,6 +232,8 @@ def input_popup():
             print(f"{num_assessment_type_2}:{num_score_2}")
             print(f"{num_assessment_type_3}:{num_score_3}")
 
+            code_module = request.form[num_code_module]
+            semester = request.form[num_semester]
             # Each course accepts three assessment_types,score, some of them may be empty if they are not filled in.
             assessment_type_1 = request.form[num_assessment_type_1]
             assessment_type_2 = request.form[num_assessment_type_2]
@@ -188,42 +241,50 @@ def input_popup():
             score_1 = request.form[num_score_1]
             score_2 = request.form[num_score_2]
             score_3 = request.form[num_score_3]
+
+            # 需要被计算，然后存进数据库
             print(f"{assessment_type_1}:{score_1}")
             print(f"{assessment_type_2}:{score_2}")
             print(f"{assessment_type_3}:{score_3}")
 
-            code_module = request.form[num_code_module]
-            semester = request.form[num_semester]
-
-            #validation
             assessment_data = [assessment_type_1, assessment_type_2, assessment_type_3]
-            print(f"{semester}-{code_module}-{list(set(assessment_data))}")
+            score_data = [score_1, score_2, score_3]
+            while '' in assessment_data:
+                score_data.pop(assessment_data.index(''))
+                assessment_data.remove('')
+            while '' in score_data:
+                assessment_data.pop(score_data.index(''))
+                score_data.remove('')
+            type_score = {}
+            for i in range(len(assessment_data)):
+                type_score[assessment_data[i]] = score_data[i]
+            print(type_score)
+            # for k in type_score.keys():
+            #     if k == 'TMA':
+
+            assessment_type = list(set(assessment_data))
+
+            # validation
+            print(f"{semester}-{code_module}-{list(set(assessment_type))}")
             if code_module:
-                while '' in assessment_data:
-                    assessment_data.remove('')
-                message = validation(code_module, semester, list(set(assessment_data)))
+                message = validation(code_module, semester, list(set(assessment_type)))
                 print(message)
                 if message != 'ok':
                     print(f'message:{message}')
-                    return render_template('input_popup.html',random_id=student_id, message=message, info = info )
+                    return render_template('input_popup.html', random_id=student_id, message=message, info=info)
 
+            # 现在需要在循环外面写
             # if course information is not none, then write it into database
             if code_module != '':
                 print("insert data into database！")
                 student_info.insert_one(
-                    {'code_module': code_module, 'code_presentation': semester, 'id_student': int(student_id),
+                    {'code_module': code_module, 'code_presentation': semester, 'id_student': student_id,
                      'gender': gender, 'region': region, 'highest_education': education, 'age_band': age_band})
                 flag = True
-            # course['code_module'] = code_module
-            # course['assessment_type'] = assessment_type
-            # course['score'] = score
-            # course['semester'] = semester
-            #
-            # courses.append(course)
+
         print(f"student_id:{student_id},{type(student_id)}")
         print(f"random_id:{random_id}")
-        for item in courses:
-            print(item)
+
         return redirect(url_for('main_real', id_student=student_id, flag=flag))
     return render_template('input_popup.html', random_id=random_id, info=info)
 
@@ -285,6 +346,11 @@ def overview():
     return render_template('overview.html', year=year)
 
 
+@app.route('/aaa')
+def aaa():
+    year = request.args.get('plot')
+    return render_template('AAA.html', year=year)
+
 @app.route('/test1')
 def test1():
     return render_template('test1.html')
@@ -319,6 +385,10 @@ def validation(course, semester, assessment_type):
         message = f"the course {course} information is incorrectly! Please check the semester information and " \
                   f"assessment_type carefully. "
     return message
+
+
+def get_rating():
+    print("rating")
 
 
 if __name__ == '__main__':

@@ -1,2 +1,3 @@
-assessment_type = ['TMA']
-print(sorted(assessment_type) == sorted(['TMA']))
+assessment_data = ['TMA', 'CMA', "EXAM"]
+for i in range(len(assessment_data)):
+    print(i)
