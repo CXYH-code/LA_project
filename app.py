@@ -221,8 +221,7 @@ def result_real():
         df.date_registration = df.date_registration.fillna(0)
         df.date_registration = df.date_registration.apply(lambda x: int(float(x)))
         df = df[df["weighted_score"]!=0].dropna(subset = ["weighted_score"])
-
-
+        print(df)
         model = SAR(
             col_user="id_student",
             col_item="code_module",
